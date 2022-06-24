@@ -1,0 +1,525 @@
+<?php
+if(file_exists("usernamegmail")) {
+            $usernamegmail = file_get_contents('usernamegmail');
+        } else {
+            echo @color('red', "USERNAME GMAIL Masih KOSONG !!!\n");
+            echo @color('nevy', "Masukkan USERNAME GMAIL (tanpa @gmail.com) : ");
+            $usernamegmail = trim(fgets(STDIN));
+            save($usernamegmail, 'usernamegmail');
+        }
+        
+        if(file_exists("domain")) {
+            $dom = file_get_contents('domain');
+        } else {
+            echo @color('red', "DOMAIN Masih KOSONG !!!\n");
+            echo @color('nevy', "Masukkan DOMAIN : ");
+            $dom = trim(fgets(STDIN));
+            save($dom, 'domain');
+        }
+echo color('yellow', "[+] ").'Bikin Password : ';
+$pass = trim(fgets(STDIN));
+echo color('yellow', "[+] "). 'Bikin Pin : ';
+$pin = trim(fgets(STDIN));
+echo "[+] Verif Nomer [ y/t ]: ";
+$nomer = trim(fgets(STDIN));
+A1:
+echo "[+] Input List (email|pass): ";
+$file = trim(fgets(STDIN));
+if(empty($file) || !file_exists($file)) {
+	echo"[+] File not found!\n";
+	goto A1;
+}
+$i =1 ;
+$list = explode("\n", str_replace("\r", "", file_get_contents($file)));
+foreach ($list as $key => $akun) {
+    $email = $akun;
+    // echo $email."\n";
+
+Check:
+$addres = file_get_contents("https://ngntd.masuk.web.id/alamat.php");
+$parse = json_decode($addres);
+$city = $parse->address->city->name;
+$street = $parse->address->street;
+$subdistrict = $parse->address->subdistrict->name;
+$postalCode = $parse->address->postalCode;
+$state = $parse->address->state->name;
+    echo "[$i]\n";
+	$data = file_get_contents("https://swappery.site/data.php?qty=1&domain=yahoo.com&apikey=7f8fc96e-de1f-4aab-9c62-3dd1de365e66");
+	$datas = json_decode($data);
+	$nama = $datas->result[0]->firstname;
+	$nama2 = $datas->result[0]->lastname;
+	$nick = $datas->result[0]->username;
+$i ++;
+$dtoken = urut2(43);
+echo @color('green','[+] ')."Create With $email\n";
+$userid = gen_uuid();
+$xsession = gen_uuid();
+// $headers[] = Referer: https://www.blibli.com/member/referral/62545ab0fae2bb395cb8b6e5/invite/OGIENIPSNQ?appsWebview=true;
+$headers = array();
+$headers[] = 'Host: www.blibli.com';
+$headers[] = '@: ignore-auth';
+$headers[] = 'X-Acf-Sensor-Data: 1,a,I7+0U/JpvCI1p/gsCl0AIMOeL5FkSY8T84EL/3zx0qHa9Le6Xw3DqBHGKH9IlWW47arqYoElJxxILL93Ckdgi5cvlA+eThP2S94UgOQJzb1s9MHa3hizdcBYQ1eqj7K2BIDtub28GMicaA8EVlez+ZQ6r1BcHo7TStLBMN0GevQ=,SYw+9qGTWozfhd0iGo1U1VFNc7Fza8uDbOlINkqCd7OD11j+puBtyrG//XQe2iJO1FXn+ahOg7mTdnurEDS4ga4VUdKzNrSeCx+yrT9jO41aOZEo/ea9uaIjpwtMmPwi1ytVjISxkbeZ1jmRyHx86lbmD2cZaBqc/lCaeKGde8k=$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$0,2000,0';
+$headers[] = 'Dvid: DT_'.$dtoken;
+$headers[] = 'Accept: application/json';
+$headers[] = 'X-Userid: '.$userid;
+$headers[] = 'X-Sessionid: '.$xsession;
+$headers[] = 'X-Requestid: '.gen_uuid();
+$headers[] = 'User-Agent: BlibliAndroid/8.6.0(4000) '.$userid.' Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)';
+$headers[] = 'Accept-Language: id';
+$headers[] = 'Build-No: 4000';
+$headers[] = 'Channelid: android';
+$headers[] = 'Storeid: 10001';
+$headers[] = 'Content-Type: application/x-www-form-urlencoded';
+$reg = curl('https://www.blibli.com/backend/mobile/reg/v2', 'username='.$email.'&password='.$pass.'&fullName='.$nama.' '.$nama2.'&securityQuestions=%5B%5D', $headers);
+// print_r($reg);
+	if (strpos($reg[1], '"result":"true"')) {
+	$toked = json_decode($reg[1]);
+	$toket = $toked->resultData->challengeToken;
+	
+
+
+	$headers = array();
+	$headers[] = 'Host: www.blibli.com';
+	$headers[] = '@: ignore-auth';
+	$headers[] = 'Accept: application/json';
+	$headers[] = 'Accept: application/json';
+	$headers[] = 'X-Userid: '.$userid;
+	$headers[] = 'X-Sessionid: '.$xsession;
+	$headers[] = 'X-Requestid: '.gen_uuid();
+	$headers[] = 'User-Agent: BlibliAndroid/8.6.0(4000) '.$userid.' Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)';
+	$headers[] = 'Accept-Language: id';
+	$headers[] = 'Build-No: 4000';
+	$headers[] = 'Channelid: android';
+	$headers[] = 'Storeid: 10001';
+	$headers[] = 'Content-Type: application/json; charset=UTF-8';
+
+	$log = curl('https://www.blibli.com/backend/common/users/_request-challenge-code', '{"challenge":{"token":"'.$toket.'"},"type":"EMAIL"}', $headers);
+	
+	imap:
+
+if(file_exists("password")) {
+            $password = file_get_contents('password');
+        } else {
+            echo @color('red', "PASSWORD Masih KOSONG !!!\n");
+            echo @color('nevy', "Masukkan PASSWORD : ");
+            $password = trim(fgets(STDIN));
+            save($password, 'password');
+        }
+
+$imap = imap_open('{imap.gmail.com:993/imap/ssl}INBOX', $usernamegmail, $password);
+
+$some   = imap_search($imap, 'TO "'.$email.'"');
+if (empty($some)) {
+	// echo ".";
+	goto imap;
+}
+foreach($some as $id)
+{
+    // echo $id."\n";
+    $a = imap_body($imap, $id);
+   
+    $b = get_between($a, '<strong style=3D"font-size:24px;">', '</strong>');
+ $b = str_replace('
+', '', $b);
+    
+    echo color('green','[+] ')."Detect Code ".$b."\n";
+    $otpxx = $b;
+    
+}
+        // $headersjsonx = array();
+        // $headersjsonx[] = "Content-Type: application/json; charset=UTF-8";
+        // $datamail = curl('https://accounts.google.com/o/oauth2/token','{"client_id":"238973871794-1lncnrkugec9bri68mau9fl2tc14a83t.apps.googleusercontent.com","client_secret":"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","refresh_token":"1//0gPkfQ_br1kGHCgYIARAAGBASNwF-L9IrWTzzmGwEcwmwU2j1CPEl09dZvQlCft7CLk8er8aRsw09pSDxtHtCwn-3ASFz7Z4qB2I","grant_type":"refresh_token"}', $headersjsonx);
+        // // print_r($datamail);
+        // $tokenmail = json_decode($datamail[1], true);
+        // $bearer = $tokenmail['access_token'];
+        // echo color('green','[+] ')."Waiting Code \n";
+        // // cek:
+        // // $targetmail = curlget('https://www.googleapis.com/gmail/v1/users/me/messages?q=from:'.$email ,$bearer);
+        // // $validasi = json_decode($targetmail[0],true);
+        // // print_r($validasi);
+        // // if($validasi['resultSizeEstimate'] == '0'){
+        // //     goto cek;
+        // //     sleep(2000);
+        // // }
+        // $id = $validasi['messages'][0]['id'];
+        // $otpx = curlget("https://gmail.googleapis.com/gmail/v1/users/me/messages/".$id,$bearer);
+        // $dataotp = json_decode($otpx[0],true);
+        // print_r($dataotp);
+        // $message = $dataotp['snippet'];
+        // $arrays = explode(" ",$message);
+        // // print_r($arrays);
+        // $otpxx = $arrays[11];
+        // echo color('green','[+] ')."Detect Code ".$otpxx."\n";
+    $headers = array();
+	$headers[] = 'Content-Type: application/json; charset=utf-8';
+	$headers[] = 'User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)';
+	$headers[] = 'Host: bwa.blibli.com';
+	$track = curl('https://bwa.blibli.com/track/authentication', '{"event":"registration","useragent":"BlibliAndroid/8.6.0(4000) '.$userid.' Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)","username":"'.$email.'","fdsdvtoken":"DT_'.$dtoken.'","accountid":"blibli-android","sessionid":"'.$xsession.'","sessionactionsequence":"3","userid":"'.$userid.'","device":"android-app","devicetype":"mobile","appversion":"8.6.0"}', $headers);
+
+	$headers = array();
+	$headers[] = 'Host: account.blibli.com';
+	$headers[] = 'X-Acf-Sensor-Data: 1,a,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1000,0,0';
+	$headers[] = 'Accept: application/json';
+	$headers[] = 'X-Userid: '.$userid;
+	$headers[] = 'X-Sessionid: '.$xsession;
+	$headers[] = 'X-Requestid: '.gen_uuid();
+	$headers[] = 'User-Agent: BlibliAndroid/8.6.0(4000) '.$userid.' Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)';
+	$headers[] = 'Accept-Language: id';
+	$headers[] = 'Build-No: 4000';
+	$headers[] = 'Channelid: android';
+	$headers[] = 'Storeid: 10001';
+	$headers[] = 'Content-Type: application/x-www-form-urlencoded';
+
+	$login = curl('https://account.blibli.com/gdn-oauth/token', 'challenge_token='.$toket.'&grant_type=mfa_otp&challenge_code='.$otpxx.'&client_secret=q%2BSPZG94E%3DgN%2BZba&client_id=86ad3acb-9ac8-419a-9446-a5828f80137e&username='.$email, $headers, true);
+	
+	
+	$json = json_decode($login[1]);
+	$access_token = $json->access_token;
+    save($email.";".$pass.";".$access_token."\n", 'akunquestblibli.txt');
+    echo color('green','[+] ')."Success Create\n";
+    
+
+	$headersx = array();
+	$headersx[] = 'Host: www.blibli.com';
+	$headersx[] = 'Accept: application/json';
+	$headersx[] = 'X-Userid: '.$userid;
+	$headersx[] = 'X-Sessionid: '.$xsession;
+	$headersx[] = 'X-Requestid: '.gen_uuid();
+	$headersx[] = 'User-Agent: BlibliAndroid/8.6.0(4000) '.$userid.' Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 8 MIUI/V12.0.2.0.QCOIDXM)';
+	$headersx[] = 'Accept-Language: id';
+	$headersx[] = 'Build-No: 4000';
+	$headersx[] = 'Content-Type: application/json; charset=UTF-8';
+	$headersx[] = 'Channelid: android';
+	$headersx[] = 'Storeid: 10001';
+	$headersx[] = 'Authorization: bearer '.$access_token;
+    $username =  base64_encode($nama);
+    $addres = curl("https://www.blibli.com/backend/member/addresses/$username",'{"id":"'.$nama.'","recipient":{"name":"'.$nama.'","email":"'.$email.'","phone":"089786786786"},"primary":true,"saveToAddressBook":false,"geolocation":{"longitude":104.62009711250002,"latitude":-3.5009159603316333,"textAddress":"'.$street.' '.$subdistrict.' '.$postalCode.', Indonesia"},"address":{"street":"'.$street.' '.$subdistrict.' '.$postalCode.', Indonesia","state":{"name":"'.$subdistrict.'","longitude":0,"latitude":0},"city":{"name":"Kab. Ogan Ilir","longitude":0,"latitude":0},"district":{"name":"Lubuk Keliat","longitude":0,"latitude":0},"subdistrict":{"name":"Embacang","longitude":0,"latitude":0},"postalCode":"'.$postalCode.'"}}',$headersx,false,'PUT');
+
+	
+    $reff = $nomer;
+    if($reff == 'y'){
+chekidot:
+        $namafile = file_get_contents('reff.txt');
+        $ref = curl("https://www.blibli.com/backend/member-voucher/referral/child",'{"referralCode":"'.$namafile.'","programId":"626820baa23e3f6508f684e3"}',$headersx);
+        // print_r($ref);
+        $tesvalidasi = json_decode($ref[1],true);
+        // print_r($tesvalidasi);
+        echo color('green','[+] ').($tesvalidasi['data']['title'])."\n";
+        if($tesvalidasi['code'] == 200){
+            $reff = curl("https://www.blibli.com/backend/member-voucher/referral/parent/join",'{"programId":"626820baa23e3f6508f684e3"}',$headersx);
+            $tess = json_decode($reff[1],true);
+            $referal = $tess['data']['referralLink'];
+            echo color('green','[+] ').$referal."\n";
+            $arr2 = explode('/',$referal);
+            // print_r($arr2);
+            $arr = explode('?appsWebview=true',$arr2[7]);
+            // echo color('green','[+] ').($arr[0])."\n";
+            // save("$arr[0]\n", 'reff.txt');
+            // print_r($reff);
+        }else{
+            // $reff = curl("https://www.blibli.com/backend/member-voucher/referral/parent/join",'{"programId":"626820baa23e3f6508f684e3"}',$headersx);
+            echo color('green','[+] ')."Refferal Full\n";
+            // print_r($reff);
+            
+
+            
+        }
+    }else{
+        
+    }
+		$set = 'y';
+        if ($set == 'y') {
+        
+        pin:
+		echo  @color('green','[+] ').@color('yellow', "VERIF NOMOR.\n");
+		echo  @color('green','[+] ').@color('yellow', "NOMOR : ");
+		$nomor = trim(fgets(STDIN));
+		$verno = curl('https://www.blibli.com/backend/mobile/phone-number-verification/token?phoneNumber='.$nomor, null, $headersx);
+		if (strpos($verno[1], '"result":"true"')) {
+
+			echo  @color('green','[+] ').@color('yellow', "OTP : ");
+			$otp = trim(fgets(STDIN));
+			$verip = curl('https://www.blibli.com/backend/mobile/phone-number-verification/verify-token', '{"token":"'.$otp.'"}', $headersx);
+			if (strpos($verip[1], '"result":"true"')) {
+						$profil = curl('https://www.blibli.com/backend/mobile/member/account-data', null, $headersx);
+		$id = json_decode($profil[1])->id;
+		$firstname = json_decode($profil[1])->firstName;
+		$lastname = json_decode($profil[1])->lastName;
+		$username = json_decode($profil[1])->username;
+		echo  @color('green','[+] ').@color('yellow', "ID : ");
+		echo  @color('green','[+] ').@color('nevy', "$id\n");
+		echo  @color('green','[+] ').@color('yellow', "NAMA : ");
+		echo  @color('green','[+] ').@color('nevy', "$firstname $lastname\n");
+		echo  @color('green','[+] ').@color('yellow', "EMAIL : ");
+		echo  @color('green','[+] ').@color('nevy', "$username\n");
+		save($email.";".$pass."\n", 'akuncb.txt');
+		echo  @color('green','[+] ').@color('yellow', "SET PIN.\n");
+		$profil = curl('https://www.blibli.com/backend/member/profile', null, $headersx);
+        pin2:
+		$profil = curl('https://www.blibli.com/backend/wallet/blipay', null, $headersx);
+				$pine = curl('https://www.blibli.com/backend/wallet/pin', '{"pin":"'.$pin.'"}', $headersx);
+				
+				$pine = curl('https://www.blibli.com/backend/wallet/pin/_request', '', $headersx);
+				
+				echo  @color('green','[+] ').@color('yellow', "OTP : ");
+			$otp = trim(fgets(STDIN));
+			$pine = curl('https://www.blibli.com/backend/wallet/pin/_verify', '{"verificationCode":"'.$otp.'"}', $headersx);
+			if (strpos($pine[1], '"status":"OK"')) {
+				echo  @color('green','[+] ').@color('green', "SUKSES SET PIN\n");
+				$blipay = curl('https://www.blibli.com/backend/wallet/blipay', null, $headers);
+			
+
+			}  else {
+			echo @color('red', "$pine[1]\n");
+            goto pin2;
+		}
+
+			
+			}else{
+                echo @color('red', "$verip[1]\n");
+                goto pin;
+            }
+
+		} else {
+			echo @color('red', "$verno[1]\n");
+            goto pin;
+		}
+    }else{
+        goto Check;
+    }
+
+
+
+
+		//	} else {
+	//		echo "$email >>> GAGAL DAFTAR\n";
+	//	}
+	} elseif (strpos($reg[1], 'REJECTED_LOGON_ID')) {
+		echo color('red', "[+]")." Error, Domain Banned!\n";
+		die();
+	} elseif ($reg[1] == "HTTP 429 Too Many Requests") {
+		goto Check;
+	} else {
+		echo @color('red', "$reg[1]\n");
+	}
+}
+// unlink('reff.txt');
+
+function curlget($url,$token){
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+    "Authorization: Bearer ".$token
+    ),
+    ));
+
+    $response = curl_exec($curl);
+    return array($response);
+
+}
+
+function curl($url,$post,$headers,$follow=false,$method=null)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        if ($follow == true) curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        if ($method !== null) curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        if ($headers !== null) curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        if ($post !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        $result = curl_exec($ch);
+        $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        $body = substr($result, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $result, $matches);
+        $cookies = array();
+        foreach($matches[1] as $item) {
+          parse_str($item, $cookie);
+          $cookies = array_merge($cookies, $cookie);
+        }
+        return array (
+        $header,
+        $body,
+        $cookies
+        );
+    }
+
+function save($data, $file) 
+    {
+        $handle = fopen($file, 'a+');
+        fwrite($handle, $data);
+        fclose($handle);
+    }
+
+function urut($length) 
+    {
+        $str = "";
+        
+            $characters = array_merge(range('0','9'),range('a','z'));
+        
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $rand = mt_rand(0, $max);
+            $str .= $characters[$rand];
+        }
+        return $str;
+    }
+
+function get_between($string, $start, $end) 
+    {
+        $string = " ".$string;
+        $ini = strpos($string,$start);
+        if ($ini == 0) return "";
+        $ini += strlen($start);
+        $len = strpos($string,$end,$ini) - $ini;
+        return substr($string,$ini,$len);
+    }
+
+function remove_space($var) {
+    $new = str_replace("\n", "", $var);
+    $new = str_replace("\t", "", $new);
+    $new = str_replace(" ", "", $new);
+    return $new;
+}
+function urut2($length) 
+    {
+        $str = "";
+        
+            $characters = array_merge(range('0','9'),range('a','z'),range('A','Z'));
+        
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $rand = mt_rand(0, $max);
+            $str .= $characters[$rand];
+        }
+        return $str;
+    }
+    function urut3($length) 
+    {
+        $str = "";
+        
+            $characters = array_merge(range('0','9'));
+        
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $rand = mt_rand(0, $max);
+            $str .= $characters[$rand];
+        }
+        return $str;
+    }
+
+    function gen_uuid() {
+    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        // 32 bits for "time_low"
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+
+        // 16 bits for "time_mid"
+        mt_rand( 0, 0xffff ),
+
+        // 16 bits for "time_hi_and_version",
+        // four most significant bits holds version number 4
+        mt_rand( 0, 0x0fff ) | 0x4000,
+
+        // 16 bits, 8 bits for "clk_seq_hi_res",
+        // 8 bits for "clk_seq_low",
+        // two most significant bits holds zero and one for variant DCE1.1
+        mt_rand( 0, 0x3fff ) | 0x8000,
+
+        // 48 bits for "node"
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+    );
+}
+function color($color = "default" , $text)
+    {
+        $arrayColor = array(
+            'grey'      => '1;30',
+            'red'       => '1;31',
+            'green'     => '1;32',
+            'yellow'    => '1;33',
+            'blue'      => '1;34',
+            'purple'    => '1;35',
+            'nevy'      => '1;36',
+            'white'     => '1;0',
+        );  
+        return "\033[".$arrayColor[$color]."m".$text."\033[0m";
+    }
+    function retrieveText($file, $init, $end, $sulfix = '')
+{
+    $i = 1;
+    $output = '';
+
+    $handle = fopen($file, 'r');
+    while (false === feof($handle) && $i <= $end) {
+        $data = fgets($handle);
+
+        if ($i >= $init) {
+            $output .= $data . $sulfix;
+        }
+        $i++;
+    }
+    fclose($handle);
+
+    return $output;
+}
+function acak16(){
+		$data = random_bytes(16);
+		$data[6] = chr(ord($data[6]) & 0x0f | 0x40); 
+		$data[8] = chr(ord($data[8]) & 0x3f | 0x80);  
+		return strtoupper(vsprintf('%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s', str_split(bin2hex($data), 2)));
+	}
+	
+	function acak32(){
+		$data1 = acak16();
+		$data2 = acak16();
+		return $data1.":".$data2;
+	}
+	function acakLokasi($kota){
+		$rand1 = rand(1111,9999);
+		$rand2 = rand(1111,9999);
+		if($kota==1){$result = "-7.072".$rand1.",110.415".$rand2;}//smg
+		if($kota==2){$result = "-7.564".$rand1.",110.832".$rand2;}//solo
+		if($kota==3){$result = "-5.466".$rand1.",107.573".$rand2;}//bdg
+		if($kota==4){$result = "-7.949".$rand1.",113.965".$rand2;}//sby
+		if($kota==5){$result = "-7.939".$rand1.",112.642".$rand2;}//mlg
+		if($kota==6){$result = "-7.773".$rand1.",110.376".$rand2;}//jog
+		if($kota==7){$result = "-7.421".$rand1.",112.712".$rand2;}//sid
+		if($kota==8){$result = "-6.178".$rand1.",106.818".$rand2;}//jkt
+		if($kota==9){$result = "-2.942".$rand1.",104.748".$rand2;}//plbg
+
+
+		return $result;
+	}
+    function getRequestt($url)
+    {
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+           $header[]='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36';
+     curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+     $response = curl_exec($ch);
+     $httpcode = curl_getinfo($ch);
+    if (!$httpcode)
+        return false;
+    else {
+        $header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        $body   = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+    }
+    $json = json_decode($body, true);
+    print_r ($json);
+    return $response;
+}
+?>
